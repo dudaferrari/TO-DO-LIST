@@ -1,0 +1,41 @@
+# Constituion do Projeto Todo List
+
+## Objetivo
+Criar uma aplicação de lista de tarefas com arquitetura MVC e mono-repo, usando memória para armazenamento temporário. O projeto deve permitir cadastrar tarefas, remover tarefas e adicionar lembretes, além de incluir documentação online com MkDocs.
+
+## Escolhas de arquitetura
+- MVC para separar responsabilidades:
+  - Model: manipulação dos dados em memória (`packages/api/src/models/todoModel.js`)
+  - Controller: regras de negócio e validação (`packages/api/src/controllers/todoController.js`)
+  - View: interface do usuário no frontend estático (`packages/web/index.html`, `packages/web/styles.css`, `packages/web/script.js`)
+- Mono-repo para organizar o backend e frontend dentro do mesmo repositório, facilitando versão e deploy conjunto.
+- Armazenamento em memória porque não há necessidade de persistência de dados permanente; simplifica a aplicação e mantém foco no comportamento (in-memory repository). Isso também torna o projeto leve para testes e demonstração.
+- Usar Express no backend para criar APIs REST simples.
+- Usar JavaScript puro no frontend para mostrar claramente a lógica do TODO List.
+
+## Justificativa
+- MVC é ideal para separar a lógica de dados da apresentação, evitando mistura de responsabilidades.
+- Mono-repo simplifica a gestão de dependências entre `packages/api` e `packages/web`, mantendo o projeto coeso.
+- Armazenar em memória atende aos requisitos do exercício e permite focar na implementação das features e dos testes sem complicar com banco de dados.
+- A documentação por MkDocs oferece um site simples e legível para explicar o projeto e os critérios de aceitação.
+
+## Requisitos atendidos
+- Cadastrar tarefa
+- Remover tarefa
+- Alternar tarefa como concluída
+- Adicionar lembrete (campo de lembrete)
+- Arquitetura MVC no backend e frontend
+- Estrutura mono-repo
+- Documentação em MkDocs
+- Código passível de testes com Jest e Supertest
+
+## Spec-driven development
+O desenvolvimento segue testes como especificação. Os testes descrevem o comportamento esperado da API e garantem que as operações principais funcionem corretamente:
+- criação de tarefas
+- listagem de tarefas
+- remoção de tarefas
+- alternância de status
+- configuração de lembrete
+
+## Notas finais
+O repositório deverá conter o código, a documentação e o deploy. O envio final deve incluir os links do repositório GitHub e da documentação online.

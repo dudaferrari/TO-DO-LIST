@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Todo List MVC</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+  <div class="page-shell">
+    <div class="app">
+      <header class="app-header">
+        <div>
+          <p class="eyebrow">Todo List</p>
+          <h1>Organize suas tarefas</h1>
+          <p class="subtitle">Cadastre, remova, marque como concluída e adicione lembretes.</p>
+        </div>
+        <div class="info-box">
+          <strong>API:</strong> <span>http://localhost:4000/api/todos</span>
+        </div>
+      </header>
+
+      <section class="add-task-card">
+        <form id="todo-form" class="todo-form">
+          <div class="field-group">
+            <label for="new-todo">Nova tarefa</label>
+            <input type="text" id="new-todo" placeholder="Ex: Estudar MVC" autocomplete="off" />
+          </div>
+          <div class="field-group">
+            <label for="new-reminder">Lembrete</label>
+            <input type="datetime-local" id="new-reminder" />
+          </div>
+          <button type="submit" class="primary-button">Adicionar tarefa</button>
+        </form>
+        <div id="status-message" class="status-message"></div>
+      </section>
+
+      <section class="tasks-panel">
+        <div class="tasks-header">
+          <div>
+            <strong id="task-count">0</strong>
+            <span>tarefas</span>
+          </div>
+          <button id="refresh-button" class="secondary-button" type="button">Atualizar</button>
+        </div>
+        <ul id="todo-list" class="task-list"></ul>
+        <div id="empty-state" class="empty-state">Nenhuma tarefa ainda. Adicione sua primeira tarefa acima.</div>
+      </section>
+    </div>
+  </div>
+  <script src="script.js"></script>
+</body>
+
+</html>

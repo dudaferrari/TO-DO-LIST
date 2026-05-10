@@ -1,0 +1,13 @@
+site_name: Todo List MVC
+site_url: https://example.com
+nav:
+  - Home: index.md
+  - Arquitetura: arquitetura.md
+  - API: api.md
+  - Constitution: constitution.md
+  - Deploy: deploy.md
+theme:
+  name: material
+  palette:
+    primary: blue
+    accent: light blue
