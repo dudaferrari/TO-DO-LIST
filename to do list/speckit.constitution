@@ -39,3 +39,50 @@ O desenvolvimento segue testes como especificação. Os testes descrevem o compo
 
 ## Notas finais
 O repositório deverá conter o código, a documentação e o deploy. O envio final deve incluir os links do repositório GitHub e da documentação online.
+
+## Registro de alterações (implementado)
+Lista resumida do que foi implementado com base nesta constituição:
+- Criação do arquivo de especificação OpenAPI: `speckit.specify` (OpenAPI 3.0.3) com os endpoints e schemas.
+- Backend (packages/api): alinhamento do modelo e controladores para os campos `title`, `description`, `completed`, `reminder`, `createdAt`.
+- Atualização dos testes Jest + Supertest em `packages/api/src/tests/todo.test.js` para refletir a nova spec; todos os testes passaram localmente.
+- Frontend (packages/web): adaptação de `script.js` para consumir `/api/todos`, enviar `title` e renderizar `title`/`completed` corretamente.
+- Adição de `README.md` com instruções de execução e testes.
+- Adição de workflow CI: `.github/workflows/test-api.yml` para executar os testes do pacote API em push/PR.
+
+Esses itens garantem que a API e o frontend estejam em sincronia com a especificação acordada e que existam testes automatizados para a API.
+
+## Boas práticas web (para implementar no site)
+Recomendações práticas e acionáveis para melhorar qualidade, desempenho e acessibilidade do frontend:
+
+- Performance
+  - Minimificar e concatenar arquivos CSS e JS; servir versões minificadas em `assets`.
+  - Usar cache-control apropriado para assets estáticos (imagens, CSS, JS) com longos `max-age` e versão via fingerprinting (ex.: `main.abc123.css`).
+  - Adiar scripts não críticos (`defer`/`async`) e carregar scripts essenciais com `defer` para não bloquear o paint.
+  - Otimizar imagens (WebP quando possível) e usar dimensões/atributos `width`/`height` para evitar reflow.
+
+- Acessibilidade (A11y)
+  - Usar HTML semântico (`header`, `main`, `nav`, `button`, `form`, `label`, `fieldset`) e associar labels corretamente aos inputs.
+  - Garantir contraste de cores suficiente (AA) e foco visível para elementos interativos.
+  - Tornar a lista e controles navegáveis por teclado e fornecer atributos ARIA mínimos quando necessário.
+  - Fornecer textos alternativos em imagens (`alt`) e descrições para controles complexos.
+
+- Segurança
+  - Forçar HTTPS no servidor/produção; aplicar `Content-Security-Policy` (CSP) estrita para scripts e fontes.
+  - Validar e sanitizar entradas no backend (já feito parcialmente nos controllers) — nunca confiar no frontend.
+  - Evitar exposição de dados sensíveis em logs e respostas de API.
+
+- Experiência do Usuário
+  - Validar formulários no cliente (feedback instantâneo) e no servidor (definitivo). Mostrar mensagens de erro claras.
+  - Usar formatação local para datas/horários; aceitar e exibir ISO8601 no backend e converter no frontend para o locale.
+  - Suporte a telas pequenas — design responsivo com media queries e tamanhos fluidos.
+
+- SEO & PWA
+  - Usar metatags básicas (`title`, `description`, `viewport`) e sitemap para o site gerado pelo MkDocs.
+  - Considerar Progressive Web App: `manifest.json` e Service Worker para cache offline de recursos estáticos (opcional).
+
+- Observabilidade e manutenção
+  - Adicionar logging simples no backend (console estruturado ou logger leve) para monitorar erros das rotas.
+  - Expor rotas de health-check `/health` para monitoramento automatizado.
+  - Incluir instruções de execução e testes no `README.md` (já adicionadas).
+
+Implemente essas práticas de forma incremental, começando por performance crítica (minificação, cache), acessibilidade básica e validação de formulário. Depois avance para CSP, Service Worker e monitoramento.

@@ -5,12 +5,12 @@ function listTodos(req, res) {
 }
 
 function createTodo(req, res) {
-    const { text, reminder } = req.body;
-    if (!text || typeof text !== 'string' || !text.trim()) {
-        return res.status(400).json({ error: 'Texto da tarefa é obrigatório.' });
+    const { title, description, reminder } = req.body;
+    if (!title || typeof title !== 'string' || !title.trim()) {
+        return res.status(400).json({ error: 'Título da tarefa é obrigatório.' });
     }
 
-    const todo = todoModel.addTodo(text.trim(), reminder || null);
+    const todo = todoModel.addTodo(title.trim(), description || '', reminder || null);
     res.status(201).json(todo);
 }
 

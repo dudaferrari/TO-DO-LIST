@@ -10,12 +10,12 @@ describe('Todo API', () => {
     test('deve criar uma tarefa', async () => {
         const response = await request(app)
             .post('/api/todos')
-            .send({ text: 'Teste de tarefa', reminder: '2026-05-12T10:00:00Z' });
+            .send({ title: 'Teste de tarefa', reminder: '2026-05-12T10:00:00Z' });
 
         expect(response.status).toBe(201);
         expect(response.body).toMatchObject({
-            text: 'Teste de tarefa',
-            done: false,
+            title: 'Teste de tarefa',
+            completed: false,
             reminder: '2026-05-12T10:00:00Z'
         });
     });
@@ -27,7 +27,7 @@ describe('Todo API', () => {
 
         expect(response.status).toBe(200);
         expect(response.body.length).toBe(1);
-        expect(response.body[0].text).toBe('Tarefa 1');
+        expect(response.body[0].title).toBe('Tarefa 1');
     });
 
     test('deve remover uma tarefa', async () => {
@@ -45,7 +45,7 @@ describe('Todo API', () => {
         const response = await request(app).patch(`/api/todos/${todo.id}/toggle`);
 
         expect(response.status).toBe(200);
-        expect(response.body.done).toBe(true);
+        expect(response.body.completed).toBe(true);
     });
 
     test('deve atualizar lembrete', async () => {

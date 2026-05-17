@@ -4,8 +4,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description"
+    content="Aplicação simples de lista de tarefas (MVC) — cadastre, remova, marque como concluída e adicione lembretes.">
+  <meta name="theme-color" content="#3b82f6">
   <title>Todo List MVC</title>
-  <link rel="stylesheet" href="styles.css">
+  <link rel="preload" href="styles.min.css" as="style">
+  <link rel="stylesheet" href="styles.min.css">
 </head>
 
 <body>
@@ -29,6 +33,10 @@
             <input type="text" id="new-todo" placeholder="Ex: Estudar MVC" autocomplete="off" />
           </div>
           <div class="field-group">
+            <label for="new-description">Descrição (opcional)</label>
+            <input type="text" id="new-description" placeholder="Detalhes da tarefa" autocomplete="off" />
+          </div>
+          <div class="field-group">
             <label for="new-reminder">Lembrete</label>
             <input type="datetime-local" id="new-reminder" />
           </div>
@@ -50,7 +58,13 @@
       </section>
     </div>
   </div>
-  <script src="script.js"></script>
+  <link rel="manifest" href="manifest.json">
+  <script defer src="script.min.js"></script>
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('sw.js').catch(() => { });
+    }
+  </script>
 </body>
 
 </html>

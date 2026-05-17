@@ -49,3 +49,38 @@ Sugerido para deploy gratuito:
 - Marcar tarefa como concluída
 - Adicionar lembrete
 - Documentação online com MkDocs
+
+## Quick start (API)
+
+Start the API server:
+
+```bash
+cd "to do list/packages/api"
+npm install
+npm start
+```
+
+The frontend is a static site located at `to do list/packages/web`; open `index.html` in a browser. The frontend expects the API at `http://localhost:4000/api/todos`.
+
+## Run tests (API)
+
+From the API package folder run:
+
+```bash
+cd "to do list/packages/api"
+npm install --no-audit --no-fund
+npm test
+```
+
+If PowerShell blocks `npm` because of execution policy, run the commands in CMD or temporarily bypass the policy:
+
+```powershell
+Set-ExecutionPolicy -ExecutionPolicy Bypass -Scope Process -Force
+cd "to do list/packages/api"
+npm install --no-audit --no-fund
+npm test
+```
+
+## API spec
+
+OpenAPI spec: `to do list/speckit.specify`.

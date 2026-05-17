@@ -9,11 +9,12 @@ function getTodoById(id) {
     return todos.find((todo) => todo.id === id) || null;
 }
 
-function addTodo(text, reminder = null) {
+function addTodo(title, description = '', reminder = null) {
     const todo = {
         id: nextId++,
-        text,
-        done: false,
+        title,
+        description,
+        completed: false,
         reminder,
         createdAt: new Date().toISOString()
     };
@@ -30,7 +31,7 @@ function removeTodo(id) {
 function toggleTodo(id) {
     const todo = getTodoById(id);
     if (!todo) return null;
-    todo.done = !todo.done;
+    todo.completed = !todo.completed;
     return todo;
 }
 

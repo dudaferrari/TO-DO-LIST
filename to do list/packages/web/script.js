@@ -1,6 +1,7 @@
 const API_URL = 'http://localhost:4000/api/todos';
 const form = document.getElementById('todo-form');
 const input = document.getElementById('new-todo');
+const descriptionInput = document.getElementById('new-description');
 const reminderInput = document.getElementById('new-reminder');
 const list = document.getElementById('todo-list');
 const statusMessage = document.getElementById('status-message');
@@ -42,11 +43,11 @@ function renderTodos() {
 
   todos.forEach((todo) => {
     const item = document.createElement('li');
-    item.className = `task-item${todo.done ? ' done' : ''}`;
+    item.className = `task-item${todo.completed ? ' done' : ''}`;
 
     const checkbox = document.createElement('input');
     checkbox.type = 'checkbox';
-    checkbox.checked = todo.done;
+    checkbox.checked = todo.completed;
     checkbox.className = 'task-checkbox';
     checkbox.addEventListener('change', () => toggleTodo(todo.id));
     item.appendChild(checkbox);
@@ -55,8 +56,15 @@ function renderTodos() {
     info.className = 'task-info';
 
     const title = document.createElement('strong');
-    title.textContent = todo.text;
+    title.textContent = todo.title;
     info.appendChild(title);
+
+    if (todo.description) {
+      const desc = document.createElement('div');
+      desc.textContent = todo.description;
+      desc.style.color = '#475569';
+      info.appendChild(desc);
+    }
 
     if (todo.reminder) {
       const reminder = document.createElement('small');
@@ -101,7 +109,6 @@ async function fetchTodos() {
     renderTodos();
   } catch (error) {
     showNotice('Erro: certifique-se de que a API está rodando em http://localhost:4000', 'error');
-    console.error(error);
   }
 }
 
@@ -114,7 +121,9 @@ async function addTodo(text, reminder) {
 
   try {
     clearNotice();
-    const body = { text: trimmed };
+    const body = { title: trimmed };
+    const desc = descriptionInput.value && descriptionInput.value.trim();
+    if (desc) body.description = desc;
     if (reminder) body.reminder = new Date(reminder).toISOString();
 
     const response = await fetch(API_URL, {
@@ -128,12 +137,12 @@ async function addTodo(text, reminder) {
     }
 
     input.value = '';
+    descriptionInput.value = '';
     reminderInput.value = '';
     showNotice('Tarefa adicionada com sucesso!');
     await fetchTodos();
   } catch (error) {
     showNotice('Erro ao adicionar tarefa. Verifique a API.', 'error');
-    console.error(error);
   }
 }
 
@@ -145,7 +154,6 @@ async function toggleTodo(id) {
     await fetchTodos();
   } catch (error) {
     showNotice('Erro ao atualizar tarefa. Verifique a API.', 'error');
-    console.error(error);
   }
 }
 
@@ -157,7 +165,6 @@ async function removeTodo(id) {
     await fetchTodos();
   } catch (error) {
     showNotice('Erro ao remover tarefa. Verifique a API.', 'error');
-    console.error(error);
   }
 }
 
@@ -173,7 +180,6 @@ async function updateReminder(id, reminder) {
     await fetchTodos();
   } catch (error) {
     showNotice('Erro ao atualizar lembrete. Verifique a API.', 'error');
-    console.error(error);
   }
 }
 
