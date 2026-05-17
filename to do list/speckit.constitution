@@ -1,81 +1,157 @@
-# Constitution: Diretrizes do Projeto Todo List
+Constitution — Diretrizes do Projeto Todo List
 
-**Versão**: 1.1.0 | **Atualizado**: 2026-05-17
+Versão: 1.1.0
+Atualizado em: 17/05/2026
 
-## 1. Objetivo do Projeto
-Criar uma aplicação de lista de tarefas com arquitetura MVC e mono-repo, usando memória para armazenamento temporário. 
-O projeto deve permitir cadastrar tarefas, remover tarefas e adicionar lembretes, além de incluir documentação online com MkDocs.
+1. Objetivo do Projeto
 
+Desenvolver uma aplicação de lista de tarefas (Todo List) utilizando arquitetura MVC e estrutura mono-repo, com persistência em memória (in-memory).
 
----
+A aplicação deverá permitir:
 
-## 2. Diretrizes Arquiteturais e Justificativas
+Cadastro de tarefas
+Remoção de tarefas
+Alteração de status (completed)
+Adição de lembretes
+Documentação online utilizando MkDocs
+2. Arquitetura e Estrutura do Projeto
 
-O projeto adota um conjunto específico de escolhas de engenharia para garantir a separação de conceitos, facilidade de implantação e simplicidade de escopo:
+O projeto utiliza o padrão MVC (Model-View-Controller) para separar responsabilidades e facilitar manutenção, escalabilidade e organização do código.
 
-*   **Padrão Arquitetural MVC (Model-View-Controller):** Utilizado para isolar estritamente a representação dos dados da lógica de apresentação.
-    *   *Model (`packages/api/src/models/todoModel.js`):* Manipulação direta dos dados.
-    *   *Controller (`packages/api/src/controllers/todoController.js`):* Governança das regras de negócio e validações de entrada.
-    *   *View (`packages/web/`):* Interface estática do usuário construída com `index.html`, `styles.css` e `script.js`.
-*   **Estrutura Mono-repo:** Organização do backend (`packages/api`) e do frontend (`packages/web`) dentro de um único repositório para simplificar a gestão de dependências, controle de versionamento e pipelines de deploy unificados.
-*   **Persistência In-Memory (Armazenamento em Memória):** Armazenamento volátil adotado para focar o desenvolvimento no comportamento do software e na lógica algorítmica, eliminando a complexidade de configuração de bancos de dados externos e tornando a execução de testes de integração extremamente rápida.
-*   **Tecnologias Core:** Uso do framework **Express** no backend para a exposição de APIs RESTful previsíveis e **JavaScript Puro (Vanilla JS)** no frontend para manter a transparência da lógica de manipulação do DOM.
+Estrutura Mono-repo
+packages/
+ ├── api/
+ └── web/
+Organização MVC
+packages/
+ ├── api/
+ │    └── src/
+ │         ├── models/
+ │         │     └── todoModel.js
+ │         ├── controllers/
+ │         │     └── todoController.js
+ │         └── tests/
+ │               └── todo.test.js
+ │
+ └── web/
+       ├── index.html
+       ├── styles.css
+       └── script.js
+Responsabilidades
+todoModel.js: responsável pela estrutura dos dados e manipulação do estado em memória.
+todoController.js: responsável pelas regras de negócio, validações e respostas HTTP.
+packages/web: responsável pela interface visual e consumo da API.
+3. Tecnologias Utilizadas
+Backend
+Node.js
+Express
+API RESTful
+Frontend
+HTML5
+CSS3
+JavaScript Vanilla
+Ferramentas
+MkDocs
+GitHub Actions
+Jest / Supertest
+4. Persistência In-Memory
 
----
+Os dados serão armazenados temporariamente em memória para simplificar o desenvolvimento e eliminar dependências externas de banco de dados.
 
-3. Mapeamento de Responsabilidades (MVC)
-A árvore de diretórios do ecossistema mono-repo deve seguir rigidamente a separação de conceitos (Separation of Concerns):
+Essa abordagem permite:
 
-packages/api/src/models/todoModel.js (Model): Detém a estrutura de dados (Schema) e encapsula as mutações do estado em memória.
+Desenvolvimento mais rápido
+Execução simples
+Testes de integração mais leves
+Foco na lógica da aplicação
+5. Desenvolvimento Baseado em Especificação
 
-packages/api/src/controllers/todoController.js (Controller): Centraliza as regras de negócio, validações de entrada e orquestração dos fluxos de resposta HTTP.
+O projeto seguirá o conceito de Spec-Driven Development.
 
-packages/web/ (View): Interface estática do usuário composta exclusivamente por index.html, styles.css e script.js (responsável pelo consumo assíncrono da API).
----
+A especificação oficial da API deverá estar no arquivo:
 
-## 4. Spec-Driven Development (Desenvolvimento Baseado em Especificações)
-O fluxo de desenvolvimento é governado pela especificação formal contida no arquivo OpenAPI 3.0.3 (`speckit.specify`). Os testes automatizados em `packages/api/src/tests/todo.test.js` atuam como a especificação executável do sistema, cobrindo obrigatoriamente:
-*   Criação de tarefas sob critérios de validação.
-*   Listagem e consistência de dados do repositório.
-*   Remoção de registros por identificadores únicos.
-*   Mutação de estados (`completed`) e configuração de lembretes.
+speckit.specify
 
-A integração contínua (CI) via GitHub Actions (`.github/workflows/test-api.yml`) impede a unificação de códigos que quebrem os contratos estabelecidos nestes testes.
+A especificação utilizará OpenAPI 3.0.3 e atuará como fonte principal de verdade do sistema.
 
----
+6. Testes Automatizados
 
-## 5. Diretrizes de Qualidade para o Frontend (Boas Práticas)
+Os testes estarão localizados em:
 
-Para a consolidação da camada de visualização (`packages/web`), devem ser perseguidos os seguintes padrões técnicos:
+packages/api/src/tests/todo.test.js
 
-### Desempenho e Resiliência
-*   **Otimização de Assets:** Servir arquivos CSS e JS preferencialmente minificados e estruturados de forma a evitar bloqueios na renderização inicial do navegador.
-*   **Carregamento Assíncrono:** Utilizar atributos como `defer` ou `async` em scripts não críticos.
-*   **Gestão de Datas:** Adotar o formato ISO8601 para a comunicação com a API, realizando a conversão para o *locale* do usuário final diretamente no cliente.
+Os testes devem validar:
 
-### Acessibilidade (A11y) & UX
-*   **HTML Semântico:** Uso obrigatório de tags estruturais (`header`, `main`, `nav`, `button`, `form`, `label`) para garantir a leitura correta por tecnologias assistivas.
-*   **Navegabilidade:** Garantir que todos os elementos interativos de gerenciamento de tarefas sejam acessíveis e operáveis via teclado, mantendo um indicador de foco visual visível.
-*   **Tratamento de Entradas:** Validar formulários de forma síncrona no cliente para feedback instantâneo e exibir mensagens de erro amigáveis e claras em português, sem jargões internos da API.
+Criação de tarefas
+Regras de validação
+Listagem de tarefas
+Remoção por ID
+Alteração do status completed
+Configuração de lembretes
+7. Integração Contínua (CI)
 
-### Segurança e Observabilidade
-*   **Sanitização de Dados:** Nunca confiar exclusivamente nas validações do cliente; o backend deve sanitizar e validar todas as entradas antes de qualquer persistência em memória.
-*   **Monitoramento de Saúde:** Disponibilizar uma rota dedicada de *health-check* (`/health`) no backend para monitoramento automatizado da API.
+O projeto utilizará GitHub Actions para integração contínua.
 
----
+Workflow obrigatório:
 
-## 6. Critérios de Entrega
-O artefato final do projeto apenas será considerado concluído mediante a entrega conjunta de:
-1.  Link do repositório público no GitHub contendo o histórico de commits atômicos e a pipeline de CI ativa.
-2.  Link público da documentação gerada pelo MkDocs detalhando os critérios de aceitação e instruções de execução.
+.github/workflows/test-api.yml
 
-##7. Governança, Qualidade e Documentação
-O ciclo de vida do projeto é blindado por garantias de engenharia de software:
+Nenhum código poderá ser integrado à branch principal caso os testes estejam falhando.
 
-Documentação Viva (Single Source of Truth): A especificação formal da API deve residir em speckit.specify (OpenAPI 3.0.3). 
-A documentação contextual do projeto, arquitetura e guias de execução devem ser gerados através do MkDocs e disponibilizados publicamente via pipeline de CI/CD.
+8. Diretrizes do Frontend
 
-Automação de Testes (CI): Fica instituído o uso obrigatório de workflows do GitHub Actions (.github/workflows/test-api.yml). 
-Nenhum código pode ser integrado à branch principal se houver falha nos testes de integração do pacote api.
+A camada de visualização deverá seguir boas práticas de desempenho, acessibilidade e responsividade.
 
-Requisitos de Interface (A11y & Resiliência): A camada View deve adotar o princípio do Progressive Enhancement, utilizando HTML5 semântico com rotulação explícita de formulários para acessibilidade, validação síncrona no cliente para feedback imediato e design responsivo fluido.
+Requisitos obrigatórios
+Uso de HTML semântico
+Navegação acessível por teclado
+Feedback visual de foco
+Validação síncrona de formulários
+Mensagens claras em português
+Design responsivo
+Progressive Enhancement
+Carregamento de Scripts
+
+Scripts não críticos deverão utilizar:
+
+<script defer>
+
+ou
+
+<script async>
+9. Segurança e Observabilidade
+
+O backend deverá validar e sanitizar todas as entradas antes da persistência em memória.
+
+A API também deverá possuir uma rota de monitoramento:
+
+/health
+10. Documentação
+
+A documentação deverá ser gerada utilizando MkDocs e publicada online.
+
+Ela deverá conter:
+
+Guia de instalação
+Guia de execução
+Arquitetura do sistema
+Endpoints da API
+Critérios de aceitação
+11. Critérios de Entrega
+
+O projeto será considerado concluído apenas com:
+
+Repositório público no GitHub contendo histórico de commits e pipeline ativa.
+Documentação pública gerada com MkDocs.
+12. Resultado Esperado
+
+Ao final do desenvolvimento, o projeto deverá possuir:
+
+Arquitetura MVC organizada
+Estrutura mono-repo
+API REST funcional
+Frontend responsivo
+Testes automatizados
+Pipeline CI/CD ativa
+Documentação pública
+Código modularizado e de fácil manutenção
