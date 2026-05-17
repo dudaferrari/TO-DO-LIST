@@ -1,29 +1,36 @@
-Constitution — Diretrizes do Projeto Todo List
+# Constitution — Diretrizes do Projeto Todo List
 
-Versão: 1.1.0
-Atualizado em: 17/05/2026
+> **Versão:** `1.1.0`  
+> **Atualizado em:** `17/05/2026`
 
-1. Objetivo do Projeto
+---
 
-Desenvolver uma aplicação de lista de tarefas (Todo List) utilizando arquitetura MVC e estrutura mono-repo, com persistência em memória (in-memory).
+## 1. Objetivo do Projeto
+
+Desenvolver uma aplicação de lista de tarefas (**Todo List**) utilizando arquitetura **MVC** e estrutura **mono-repo**, com persistência **in-memory**.
 
 A aplicação deverá permitir:
 
-Cadastro de tarefas
-Remoção de tarefas
-Alteração de status (completed)
-Adição de lembretes
-Documentação online utilizando MkDocs
-2. Arquitetura e Estrutura do Projeto
+- Cadastro de tarefas
+- Remoção de tarefas
+- Alteração de status (`completed`)
+- Adição de lembretes
+- Documentação online utilizando **MkDocs**
 
-O projeto utiliza o padrão MVC (Model-View-Controller) para separar responsabilidades e facilitar manutenção, escalabilidade e organização do código.
+---
 
-Estrutura Mono-repo
+## 2. Arquitetura e Estrutura do Projeto
+
+O projeto utiliza o padrão **MVC (Model-View-Controller)** para separar responsabilidades e facilitar manutenção, escalabilidade e organização do código.
+
+### Estrutura Mono-repo
+
+```txt
 packages/
  ├── api/
  └── web/
-Organização MVC
-packages/
+
+ packages/
  ├── api/
  │    └── src/
  │         ├── models/
@@ -37,10 +44,12 @@ packages/
        ├── index.html
        ├── styles.css
        └── script.js
+
 Responsabilidades
-todoModel.js: responsável pela estrutura dos dados e manipulação do estado em memória.
-todoController.js: responsável pelas regras de negócio, validações e respostas HTTP.
-packages/web: responsável pela interface visual e consumo da API.
+Camada	Responsabilidade
+Model	Estrutura e manipulação dos dados
+Controller	Regras de negócio e validações
+View	Interface visual e consumo da API
 3. Tecnologias Utilizadas
 Backend
 Node.js
@@ -53,35 +62,33 @@ JavaScript Vanilla
 Ferramentas
 MkDocs
 GitHub Actions
-Jest / Supertest
+Jest
+Supertest
 4. Persistência In-Memory
 
 Os dados serão armazenados temporariamente em memória para simplificar o desenvolvimento e eliminar dependências externas de banco de dados.
 
-Essa abordagem permite:
-
+Benefícios
 Desenvolvimento mais rápido
-Execução simples
-Testes de integração mais leves
+Execução simplificada
+Testes mais leves
 Foco na lógica da aplicação
 5. Desenvolvimento Baseado em Especificação
 
 O projeto seguirá o conceito de Spec-Driven Development.
 
-A especificação oficial da API deverá estar no arquivo:
+A especificação oficial da API deverá estar localizada em:
 
 speckit.specify
 
-A especificação utilizará OpenAPI 3.0.3 e atuará como fonte principal de verdade do sistema.
+A especificação utilizará o padrão OpenAPI 3.0.3 e atuará como fonte principal de verdade do sistema.
 
 6. Testes Automatizados
 
 Os testes estarão localizados em:
 
 packages/api/src/tests/todo.test.js
-
 Os testes devem validar:
-
 Criação de tarefas
 Regras de validação
 Listagem de tarefas
@@ -92,18 +99,20 @@ Configuração de lembretes
 
 O projeto utilizará GitHub Actions para integração contínua.
 
-Workflow obrigatório:
-
+Workflow obrigatório
 .github/workflows/test-api.yml
-
-Nenhum código poderá ser integrado à branch principal caso os testes estejam falhando.
-
+Regras
+Nenhum código poderá ser integrado à branch principal caso os testes estejam falhando
+A pipeline deverá validar automaticamente:
+Testes
+Integridade da API
+Qualidade do código
 8. Diretrizes do Frontend
 
 A camada de visualização deverá seguir boas práticas de desempenho, acessibilidade e responsividade.
 
 Requisitos obrigatórios
-Uso de HTML semântico
+HTML semântico
 Navegação acessível por teclado
 Feedback visual de foco
 Validação síncrona de formulários
@@ -114,24 +123,25 @@ Carregamento de Scripts
 
 Scripts não críticos deverão utilizar:
 
-<script defer>
+<script defer></script>
 
 ou
 
-<script async>
+<script async></script>
 9. Segurança e Observabilidade
 
 O backend deverá validar e sanitizar todas as entradas antes da persistência em memória.
 
-A API também deverá possuir uma rota de monitoramento:
+Health Check
+
+A API deverá possuir a rota:
 
 /health
 10. Documentação
 
 A documentação deverá ser gerada utilizando MkDocs e publicada online.
 
-Ela deverá conter:
-
+A documentação deve conter:
 Guia de instalação
 Guia de execução
 Arquitetura do sistema
@@ -141,8 +151,8 @@ Critérios de aceitação
 
 O projeto será considerado concluído apenas com:
 
-Repositório público no GitHub contendo histórico de commits e pipeline ativa.
-Documentação pública gerada com MkDocs.
+Repositório público no GitHub contendo histórico de commits e pipeline ativa
+Documentação pública gerada com MkDocs
 12. Resultado Esperado
 
 Ao final do desenvolvimento, o projeto deverá possuir:
