@@ -1,88 +1,81 @@
-# Constituion do Projeto Todo List
+# Constitution: Diretrizes do Projeto Todo List
 
-## Objetivo
-Criar uma aplicação de lista de tarefas com arquitetura MVC e mono-repo, usando memória para armazenamento temporário. O projeto deve permitir cadastrar tarefas, remover tarefas e adicionar lembretes, além de incluir documentação online com MkDocs.
+**Versão**: 1.1.0 | **Atualizado**: 2026-05-17
 
-## Escolhas de arquitetura
-- MVC para separar responsabilidades:
-  - Model: manipulação dos dados em memória (`packages/api/src/models/todoModel.js`)
-  - Controller: regras de negócio e validação (`packages/api/src/controllers/todoController.js`)
-  - View: interface do usuário no frontend estático (`packages/web/index.html`, `packages/web/styles.css`, `packages/web/script.js`)
-- Mono-repo para organizar o backend e frontend dentro do mesmo repositório, facilitando versão e deploy conjunto.
-- Armazenamento em memória porque não há necessidade de persistência de dados permanente; simplifica a aplicação e mantém foco no comportamento (in-memory repository). Isso também torna o projeto leve para testes e demonstração.
-- Usar Express no backend para criar APIs REST simples.
-- Usar JavaScript puro no frontend para mostrar claramente a lógica do TODO List.
+## 1. Objetivo do Projeto
+Criar uma aplicação de lista de tarefas com arquitetura MVC e mono-repo, usando memória para armazenamento temporário. 
+O projeto deve permitir cadastrar tarefas, remover tarefas e adicionar lembretes, além de incluir documentação online com MkDocs.
 
-## Justificativa
-- MVC é ideal para separar a lógica de dados da apresentação, evitando mistura de responsabilidades.
-- Mono-repo simplifica a gestão de dependências entre `packages/api` e `packages/web`, mantendo o projeto coeso.
-- Armazenar em memória atende aos requisitos do exercício e permite focar na implementação das features e dos testes sem complicar com banco de dados.
-- A documentação por MkDocs oferece um site simples e legível para explicar o projeto e os critérios de aceitação.
 
-## Requisitos atendidos
-- Cadastrar tarefa
-- Remover tarefa
-- Alternar tarefa como concluída
-- Adicionar lembrete (campo de lembrete)
-- Arquitetura MVC no backend e frontend
-- Estrutura mono-repo
-- Documentação em MkDocs
-- Código passível de testes com Jest e Supertest
+---
 
-## Spec-driven development
-O desenvolvimento segue testes como especificação. Os testes descrevem o comportamento esperado da API e garantem que as operações principais funcionem corretamente:
-- criação de tarefas
-- listagem de tarefas
-- remoção de tarefas
-- alternância de status
-- configuração de lembrete
+## 2. Diretrizes Arquiteturais e Justificativas
 
-## Notas finais
-O repositório deverá conter o código, a documentação e o deploy. O envio final deve incluir os links do repositório GitHub e da documentação online.
+O projeto adota um conjunto específico de escolhas de engenharia para garantir a separação de conceitos, facilidade de implantação e simplicidade de escopo:
 
-## Registro de alterações (implementado)
-Lista resumida do que foi implementado com base nesta constituição:
-- Criação do arquivo de especificação OpenAPI: `speckit.specify` (OpenAPI 3.0.3) com os endpoints e schemas.
-- Backend (packages/api): alinhamento do modelo e controladores para os campos `title`, `description`, `completed`, `reminder`, `createdAt`.
-- Atualização dos testes Jest + Supertest em `packages/api/src/tests/todo.test.js` para refletir a nova spec; todos os testes passaram localmente.
-- Frontend (packages/web): adaptação de `script.js` para consumir `/api/todos`, enviar `title` e renderizar `title`/`completed` corretamente.
-- Adição de `README.md` com instruções de execução e testes.
-- Adição de workflow CI: `.github/workflows/test-api.yml` para executar os testes do pacote API em push/PR.
+*   **Padrão Arquitetural MVC (Model-View-Controller):** Utilizado para isolar estritamente a representação dos dados da lógica de apresentação.
+    *   *Model (`packages/api/src/models/todoModel.js`):* Manipulação direta dos dados.
+    *   *Controller (`packages/api/src/controllers/todoController.js`):* Governança das regras de negócio e validações de entrada.
+    *   *View (`packages/web/`):* Interface estática do usuário construída com `index.html`, `styles.css` e `script.js`.
+*   **Estrutura Mono-repo:** Organização do backend (`packages/api`) e do frontend (`packages/web`) dentro de um único repositório para simplificar a gestão de dependências, controle de versionamento e pipelines de deploy unificados.
+*   **Persistência In-Memory (Armazenamento em Memória):** Armazenamento volátil adotado para focar o desenvolvimento no comportamento do software e na lógica algorítmica, eliminando a complexidade de configuração de bancos de dados externos e tornando a execução de testes de integração extremamente rápida.
+*   **Tecnologias Core:** Uso do framework **Express** no backend para a exposição de APIs RESTful previsíveis e **JavaScript Puro (Vanilla JS)** no frontend para manter a transparência da lógica de manipulação do DOM.
 
-Esses itens garantem que a API e o frontend estejam em sincronia com a especificação acordada e que existam testes automatizados para a API.
+---
 
-## Boas práticas web (para implementar no site)
-Recomendações práticas e acionáveis para melhorar qualidade, desempenho e acessibilidade do frontend:
+3. Mapeamento de Responsabilidades (MVC)
+A árvore de diretórios do ecossistema mono-repo deve seguir rigidamente a separação de conceitos (Separation of Concerns):
 
-- Performance
-  - Minimificar e concatenar arquivos CSS e JS; servir versões minificadas em `assets`.
-  - Usar cache-control apropriado para assets estáticos (imagens, CSS, JS) com longos `max-age` e versão via fingerprinting (ex.: `main.abc123.css`).
-  - Adiar scripts não críticos (`defer`/`async`) e carregar scripts essenciais com `defer` para não bloquear o paint.
-  - Otimizar imagens (WebP quando possível) e usar dimensões/atributos `width`/`height` para evitar reflow.
+packages/api/src/models/todoModel.js (Model): Detém a estrutura de dados (Schema) e encapsula as mutações do estado em memória.
 
-- Acessibilidade (A11y)
-  - Usar HTML semântico (`header`, `main`, `nav`, `button`, `form`, `label`, `fieldset`) e associar labels corretamente aos inputs.
-  - Garantir contraste de cores suficiente (AA) e foco visível para elementos interativos.
-  - Tornar a lista e controles navegáveis por teclado e fornecer atributos ARIA mínimos quando necessário.
-  - Fornecer textos alternativos em imagens (`alt`) e descrições para controles complexos.
+packages/api/src/controllers/todoController.js (Controller): Centraliza as regras de negócio, validações de entrada e orquestração dos fluxos de resposta HTTP.
 
-- Segurança
-  - Forçar HTTPS no servidor/produção; aplicar `Content-Security-Policy` (CSP) estrita para scripts e fontes.
-  - Validar e sanitizar entradas no backend (já feito parcialmente nos controllers) — nunca confiar no frontend.
-  - Evitar exposição de dados sensíveis em logs e respostas de API.
+packages/web/ (View): Interface estática do usuário composta exclusivamente por index.html, styles.css e script.js (responsável pelo consumo assíncrono da API).
+---
 
-- Experiência do Usuário
-  - Validar formulários no cliente (feedback instantâneo) e no servidor (definitivo). Mostrar mensagens de erro claras.
-  - Usar formatação local para datas/horários; aceitar e exibir ISO8601 no backend e converter no frontend para o locale.
-  - Suporte a telas pequenas — design responsivo com media queries e tamanhos fluidos.
+## 4. Spec-Driven Development (Desenvolvimento Baseado em Especificações)
+O fluxo de desenvolvimento é governado pela especificação formal contida no arquivo OpenAPI 3.0.3 (`speckit.specify`). Os testes automatizados em `packages/api/src/tests/todo.test.js` atuam como a especificação executável do sistema, cobrindo obrigatoriamente:
+*   Criação de tarefas sob critérios de validação.
+*   Listagem e consistência de dados do repositório.
+*   Remoção de registros por identificadores únicos.
+*   Mutação de estados (`completed`) e configuração de lembretes.
 
-- SEO & PWA
-  - Usar metatags básicas (`title`, `description`, `viewport`) e sitemap para o site gerado pelo MkDocs.
-  - Considerar Progressive Web App: `manifest.json` e Service Worker para cache offline de recursos estáticos (opcional).
+A integração contínua (CI) via GitHub Actions (`.github/workflows/test-api.yml`) impede a unificação de códigos que quebrem os contratos estabelecidos nestes testes.
 
-- Observabilidade e manutenção
-  - Adicionar logging simples no backend (console estruturado ou logger leve) para monitorar erros das rotas.
-  - Expor rotas de health-check `/health` para monitoramento automatizado.
-  - Incluir instruções de execução e testes no `README.md` (já adicionadas).
+---
 
-Implemente essas práticas de forma incremental, começando por performance crítica (minificação, cache), acessibilidade básica e validação de formulário. Depois avance para CSP, Service Worker e monitoramento.
+## 5. Diretrizes de Qualidade para o Frontend (Boas Práticas)
+
+Para a consolidação da camada de visualização (`packages/web`), devem ser perseguidos os seguintes padrões técnicos:
+
+### Desempenho e Resiliência
+*   **Otimização de Assets:** Servir arquivos CSS e JS preferencialmente minificados e estruturados de forma a evitar bloqueios na renderização inicial do navegador.
+*   **Carregamento Assíncrono:** Utilizar atributos como `defer` ou `async` em scripts não críticos.
+*   **Gestão de Datas:** Adotar o formato ISO8601 para a comunicação com a API, realizando a conversão para o *locale* do usuário final diretamente no cliente.
+
+### Acessibilidade (A11y) & UX
+*   **HTML Semântico:** Uso obrigatório de tags estruturais (`header`, `main`, `nav`, `button`, `form`, `label`) para garantir a leitura correta por tecnologias assistivas.
+*   **Navegabilidade:** Garantir que todos os elementos interativos de gerenciamento de tarefas sejam acessíveis e operáveis via teclado, mantendo um indicador de foco visual visível.
+*   **Tratamento de Entradas:** Validar formulários de forma síncrona no cliente para feedback instantâneo e exibir mensagens de erro amigáveis e claras em português, sem jargões internos da API.
+
+### Segurança e Observabilidade
+*   **Sanitização de Dados:** Nunca confiar exclusivamente nas validações do cliente; o backend deve sanitizar e validar todas as entradas antes de qualquer persistência em memória.
+*   **Monitoramento de Saúde:** Disponibilizar uma rota dedicada de *health-check* (`/health`) no backend para monitoramento automatizado da API.
+
+---
+
+## 6. Critérios de Entrega
+O artefato final do projeto apenas será considerado concluído mediante a entrega conjunta de:
+1.  Link do repositório público no GitHub contendo o histórico de commits atômicos e a pipeline de CI ativa.
+2.  Link público da documentação gerada pelo MkDocs detalhando os critérios de aceitação e instruções de execução.
+
+##7. Governança, Qualidade e Documentação
+O ciclo de vida do projeto é blindado por garantias de engenharia de software:
+
+Documentação Viva (Single Source of Truth): A especificação formal da API deve residir em speckit.specify (OpenAPI 3.0.3). 
+A documentação contextual do projeto, arquitetura e guias de execução devem ser gerados através do MkDocs e disponibilizados publicamente via pipeline de CI/CD.
+
+Automação de Testes (CI): Fica instituído o uso obrigatório de workflows do GitHub Actions (.github/workflows/test-api.yml). 
+Nenhum código pode ser integrado à branch principal se houver falha nos testes de integração do pacote api.
+
+Requisitos de Interface (A11y & Resiliência): A camada View deve adotar o princípio do Progressive Enhancement, utilizando HTML5 semântico com rotulação explícita de formulários para acessibilidade, validação síncrona no cliente para feedback imediato e design responsivo fluido.
