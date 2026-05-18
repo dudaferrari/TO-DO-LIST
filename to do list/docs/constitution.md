@@ -56,13 +56,34 @@ packages/
 
 ---
 
-# 3.Responsabilidades
+# 3. Boas práticas
 
-| Camada | Responsabilidade |
-|---|---|
-| `Model` | Estrutura e manipulação dos dados |
-| `Controller` | Regras de negócio e validações |
-| `View` | Interface visual e consumo da API |
+## Performance
+- Minimificar arquivos CSS e JS
+- Utilizar `defer` e `async` nos scripts
+- Otimizar imagens e usar cache para assets estáticos
+
+---
+
+## Acessibilidade (A11y)
+- Utilizar HTML semântico
+- Garantir navegação por teclado
+- Manter contraste adequado e foco visível
+- Utilizar `alt` em imagens
+
+---
+
+## Segurança
+- Utilizar HTTPS
+- Validar e sanitizar entradas no backend
+- Evitar exposição de dados sensíveis
+
+---
+
+## Experiência do Usuário
+- Validar formulários no cliente e servidor
+- Exibir mensagens claras de erro
+- Utilizar design responsivo
 
 ---
 
