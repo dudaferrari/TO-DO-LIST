@@ -550,29 +550,35 @@ packages/
 └── web/
 </code></pre>
 <hr />
-<h1 id="3responsabilidades">3.Responsabilidades</h1>
-<table>
-<thead>
-<tr>
-<th>Camada</th>
-<th>Responsabilidade</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>Model</code></td>
-<td>Estrutura e manipulação dos dados</td>
-</tr>
-<tr>
-<td><code>Controller</code></td>
-<td>Regras de negócio e validações</td>
-</tr>
-<tr>
-<td><code>View</code></td>
-<td>Interface visual e consumo da API</td>
-</tr>
-</tbody>
-</table>
+<h1 id="3-boas-praticas">3. Boas práticas</h1>
+<h2 id="performance">Performance</h2>
+<ul>
+<li>Minimificar arquivos CSS e JS</li>
+<li>Utilizar <code>defer</code> e <code>async</code> nos scripts</li>
+<li>Otimizar imagens e usar cache para assets estáticos</li>
+</ul>
+<hr />
+<h2 id="acessibilidade-a11y">Acessibilidade (A11y)</h2>
+<ul>
+<li>Utilizar HTML semântico</li>
+<li>Garantir navegação por teclado</li>
+<li>Manter contraste adequado e foco visível</li>
+<li>Utilizar <code>alt</code> em imagens</li>
+</ul>
+<hr />
+<h2 id="seguranca">Segurança</h2>
+<ul>
+<li>Utilizar HTTPS</li>
+<li>Validar e sanitizar entradas no backend</li>
+<li>Evitar exposição de dados sensíveis</li>
+</ul>
+<hr />
+<h2 id="experiencia-do-usuario">Experiência do Usuário</h2>
+<ul>
+<li>Validar formulários no cliente e servidor</li>
+<li>Exibir mensagens claras de erro</li>
+<li>Utilizar design responsivo</li>
+</ul>
 <hr />
 <h1 id="4tecnologias-utilizadas">4.Tecnologias Utilizadas</h1>
 <h2 id="backend">Backend</h2>
