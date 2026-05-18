@@ -62,6 +62,8 @@ packages/
 - Minimificar arquivos CSS e JS
 - Utilizar `defer` e `async` nos scripts
 - Otimizar imagens e usar cache para assets estáticos
+As otimizações de desempenho reduzem o tempo de carregamento da aplicação, melhoram a experiência do usuário e diminuem o consumo de recursos do navegador.
+Logs e monitoramento facilitam a identificação de erros, manutenção do sistema e acompanhamento da disponibilidade da API.
 
 ---
 
@@ -70,13 +72,15 @@ packages/
 - Garantir navegação por teclado
 - Manter contraste adequado e foco visível
 - Utilizar `alt` em imagens
-
+A utilização de práticas de acessibilidade garante que a aplicação possa ser utilizada por diferentes usuários, incluindo pessoas com limitações visuais ou motoras.
+ 
 ---
 
 ## Segurança
 - Utilizar HTTPS
 - Validar e sanitizar entradas no backend
 - Evitar exposição de dados sensíveis
+A validação e sanitização de dados evitam vulnerabilidades, aumentam a confiabilidade da aplicação e protegem informações dos usuários.
 
 ---
 
@@ -84,6 +88,7 @@ packages/
 - Validar formulários no cliente e servidor
 - Exibir mensagens claras de erro
 - Utilizar design responsivo
+Validações claras, feedback imediato e design responsivo tornam a aplicação mais intuitiva, acessível e agradável de utilizar.
 
 ---
 
