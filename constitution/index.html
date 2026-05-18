@@ -74,7 +74,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#constitution-do-projeto" class="md-skip">
+        <a href="#constitution-diretrizes-do-projeto-todo-list" class="md-skip">
           Skip to content
         </a>
       
@@ -347,10 +347,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#por-que-mvc" class="md-nav__link">
+  <a href="#1-objetivo-do-projeto" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Por que MVC?
+        1. Objetivo do Projeto
       
     </span>
   </a>
@@ -358,57 +358,30 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#por-que-mono-repo" class="md-nav__link">
+  <a href="#2-arquitetura-e-estrutura-do-projeto" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Por que mono-repo?
+        2. Arquitetura e Estrutura do Projeto
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Arquitetura e Estrutura do Projeto">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#estrutura-mono-repo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Estrutura Mono-repo
       
     </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#por-que-memoria" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Por que memória?
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#requisitos-cumpridos" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Requisitos cumpridos
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#especificacoes-de-desenvolvimento" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Especificações de desenvolvimento
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#observacoes-finais" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Observações finais
-      
-    </span>
-  </a>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -474,10 +447,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#por-que-mvc" class="md-nav__link">
+  <a href="#1-objetivo-do-projeto" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Por que MVC?
+        1. Objetivo do Projeto
       
     </span>
   </a>
@@ -485,57 +458,30 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#por-que-mono-repo" class="md-nav__link">
+  <a href="#2-arquitetura-e-estrutura-do-projeto" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Por que mono-repo?
+        2. Arquitetura e Estrutura do Projeto
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Arquitetura e Estrutura do Projeto">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#estrutura-mono-repo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Estrutura Mono-repo
       
     </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#por-que-memoria" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Por que memória?
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#requisitos-cumpridos" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Requisitos cumpridos
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#especificacoes-de-desenvolvimento" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Especificações de desenvolvimento
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#observacoes-finais" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Observações finais
-      
-    </span>
-  </a>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -556,40 +502,190 @@
 
 
 
-<h1 id="constitution-do-projeto">Constitution do Projeto</h1>
-<p>Este documento descreve as decisões de arquitetura e os motivos por trás do desenvolvimento do Todo List com MVC.</p>
-<h2 id="por-que-mvc">Por que MVC?</h2>
-<ul>
-<li>Separação clara entre o modelo de dados, regras de negócio e interface.</li>
-<li>Facilita a manutenção e testes.</li>
-<li>Atende ao requisito de arquitetura do exercício.</li>
-</ul>
-<h2 id="por-que-mono-repo">Por que mono-repo?</h2>
-<ul>
-<li>Organiza frontend e backend no mesmo repositório.</li>
-<li>Facilita o versionamento conjunto.</li>
-<li>Simplifica o desenvolvimento local com um único <code>npm install</code>.</li>
-</ul>
-<h2 id="por-que-memoria">Por que memória?</h2>
-<ul>
-<li>O requisito indicou que não há necessidade de banco de dados persistente.</li>
-<li>Memória é suficiente para demonstrar cadastro, remoção e lembretes.</li>
-<li>Torna o projeto mais leve e focado em comportamento e testes.</li>
-</ul>
-<h2 id="requisitos-cumpridos">Requisitos cumpridos</h2>
+<h1 id="constitution-diretrizes-do-projeto-todo-list">Constitution — Diretrizes do Projeto Todo List</h1>
+<blockquote>
+<p><strong>Versão:</strong> <code>1.1.0</code><br />
+<strong>Atualizado em:</strong> <code>17/05/2026</code></p>
+</blockquote>
+<hr />
+<h2 id="1-objetivo-do-projeto">1. Objetivo do Projeto</h2>
+<p>Desenvolver uma aplicação de lista de tarefas (<strong>Todo List</strong>) utilizando arquitetura <strong>MVC</strong> e estrutura <strong>mono-repo</strong>, com persistência <strong>in-memory</strong>.</p>
+<p>A aplicação deverá permitir:</p>
 <ul>
 <li>Cadastro de tarefas</li>
 <li>Remoção de tarefas</li>
-<li>Lembretes</li>
-<li>Marcação como concluída</li>
-<li>MVC</li>
-<li>Mono-repo</li>
-<li>Documentação MkDocs</li>
+<li>Alteração de status (<code>completed</code>)</li>
+<li>Adição de lembretes</li>
+<li>Documentação online utilizando <strong>MkDocs</strong></li>
 </ul>
-<h2 id="especificacoes-de-desenvolvimento">Especificações de desenvolvimento</h2>
-<p>Os testes são usados como especificação (<code>spec-driven development</code>) para garantir que os comportamentos principais funcionem conforme esperado e para documentar o fluxo do sistema.</p>
-<h2 id="observacoes-finais">Observações finais</h2>
-<p>O repositório deve conter o código e o link da documentação online. A entrega será feita com o link do GitHub e do MkDocs publicado.</p>
+<hr />
+<h2 id="2-arquitetura-e-estrutura-do-projeto">2. Arquitetura e Estrutura do Projeto</h2>
+<p>O projeto utiliza o padrão <strong>MVC (Model-View-Controller)</strong> para separar responsabilidades e facilitar manutenção, escalabilidade e organização do código.</p>
+<h3 id="estrutura-mono-repo">Estrutura Mono-repo</h3>
+<pre><code class="language-txt">packages/
+ ├── api/
+ └── web/
+
+ packages/
+ ├── api/
+ │    └── src/
+ │         ├── models/
+ │         │     └── todoModel.js
+ │         ├── controllers/
+ │         │     └── todoController.js
+ │         └── tests/
+ │               └── todo.test.js
+ │
+ └── web/
+       ├── index.html
+       ├── styles.css
+       └── script.js
+'''
+
+# Estrutura Mono-repo
+
+```txt
+packages/
+├── api/
+└── web/
+</code></pre>
+<hr />
+<h1 id="3responsabilidades">3.Responsabilidades</h1>
+<table>
+<thead>
+<tr>
+<th>Camada</th>
+<th>Responsabilidade</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Model</code></td>
+<td>Estrutura e manipulação dos dados</td>
+</tr>
+<tr>
+<td><code>Controller</code></td>
+<td>Regras de negócio e validações</td>
+</tr>
+<tr>
+<td><code>View</code></td>
+<td>Interface visual e consumo da API</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h1 id="4tecnologias-utilizadas">4.Tecnologias Utilizadas</h1>
+<h2 id="backend">Backend</h2>
+<ul>
+<li><code>Node.js</code></li>
+<li><code>Express</code></li>
+<li><code>API RESTful</code></li>
+</ul>
+<h2 id="frontend">Frontend</h2>
+<ul>
+<li><code>HTML5</code></li>
+<li><code>CSS3</code></li>
+<li><code>JavaScript Vanilla</code></li>
+</ul>
+<h2 id="ferramentas">Ferramentas</h2>
+<ul>
+<li><code>MkDocs</code></li>
+<li><code>GitHub Actions</code></li>
+<li><code>Jest</code></li>
+<li><code>Supertest</code></li>
+</ul>
+<hr />
+<h1 id="5persistencia-in-memory">5.Persistência In-Memory</h1>
+<p>Os dados serão armazenados temporariamente em memória para simplificar o desenvolvimento e eliminar dependências externas de banco de dados.</p>
+<h2 id="6beneficios">6.Benefícios</h2>
+<ul>
+<li>Desenvolvimento mais rápido</li>
+<li>Execução simplificada</li>
+<li>Testes mais leves</li>
+<li>Foco na lógica da aplicação</li>
+</ul>
+<hr />
+<h1 id="7desenvolvimento-baseado-em-especificacao">7.Desenvolvimento Baseado em Especificação</h1>
+<p>O projeto seguirá o conceito de <code>Spec-Driven Development</code>.</p>
+<p>A especificação oficial da API deverá estar localizada em:</p>
+<pre><code class="language-txt">speckit.specify
+</code></pre>
+<p>A especificação utilizará o padrão <code>OpenAPI 3.0.3</code> e atuará como fonte principal de verdade do sistema.</p>
+<hr />
+<h1 id="8testes-automatizados">8.Testes Automatizados</h1>
+<p>Os testes estarão localizados em:</p>
+<pre><code class="language-txt">packages/api/src/tests/todo.test.js
+</code></pre>
+<h2 id="9os-testes-devem-validar">9.Os testes devem validar</h2>
+<ul>
+<li>Criação de tarefas</li>
+<li>Regras de validação</li>
+<li>Listagem de tarefas</li>
+<li>Remoção por ID</li>
+<li>Alteração do status <code>completed</code></li>
+<li>Configuração de lembretes</li>
+</ul>
+<hr />
+<h1 id="10integracao-continua-ci">10.Integração Contínua (CI)</h1>
+<p>O projeto utilizará <code>GitHub Actions</code> para integração contínua.</p>
+<h2 id="11workflow-obrigatorio">11.Workflow obrigatório</h2>
+<pre><code class="language-txt">.github/workflows/test-api.yml
+</code></pre>
+<h2 id="12regras">12.Regras</h2>
+<ul>
+<li>Nenhum código poderá ser integrado à branch principal caso os testes estejam falhando</li>
+<li>A pipeline deverá validar automaticamente:</li>
+<li>Testes</li>
+<li>Integridade da API</li>
+<li>Qualidade do código</li>
+</ul>
+<hr />
+<h1 id="13diretrizes-do-frontend">13.Diretrizes do Frontend</h1>
+<p>A camada de visualização deverá seguir boas práticas de desempenho, acessibilidade e responsividade.</p>
+<h2 id="requisitos-obrigatorios">Requisitos obrigatórios</h2>
+<ul>
+<li>HTML semântico</li>
+<li>Navegação acessível por teclado</li>
+<li>Feedback visual de foco</li>
+<li>Validação síncrona de formulários</li>
+<li>Mensagens claras em português</li>
+<li>Design responsivo</li>
+<li>Progressive Enhancement</li>
+</ul>
+<hr />
+<h1 id="14seguranca-e-observabilidade">14.Segurança e Observabilidade</h1>
+<p>O backend deverá validar e sanitizar todas as entradas antes da persistência em memória.</p>
+<hr />
+<h1 id="documentacao">Documentação</h1>
+<p>A documentação deverá ser gerada utilizando <code>MkDocs</code> e publicada online.</p>
+<h2 id="a-documentacao-deve-conter">A documentação deve conter</h2>
+<ul>
+<li>Guia de instalação</li>
+<li>Guia de execução</li>
+<li>Arquitetura do sistema</li>
+<li>Endpoints da API</li>
+<li>Critérios de aceitação</li>
+</ul>
+<hr />
+<h1 id="criterios-de-entrega">Critérios de Entrega</h1>
+<p>O projeto será considerado concluído apenas com:</p>
+<ul>
+<li>Repositório público no GitHub contendo histórico de commits e pipeline ativa</li>
+<li>Documentação pública gerada com MkDocs</li>
+</ul>
+<hr />
+<h1 id="16resultado-esperado">16.Resultado Esperado</h1>
+<p>Ao final do desenvolvimento, o projeto deverá possuir:</p>
+<ul>
+<li>Arquitetura MVC organizada</li>
+<li>Estrutura mono-repo</li>
+<li>API REST funcional</li>
+<li>Frontend responsivo</li>
+<li>Testes automatizados</li>
+<li>Pipeline CI/CD ativa</li>
+<li>Documentação pública</li>
+<li>Código modularizado e de fácil manutenção</li>
+</ul>
 
 
 
