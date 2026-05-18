@@ -44,27 +44,32 @@ packages/
        ├── index.html
        ├── styles.css
        └── script.js
+'''
+       
+##3 Responsabilidades
+| Camada       | Responsabilidade                  |
+| ------------ | --------------------------------- |
+| `Model`      | Estrutura e manipulação dos dados |
+| `Controller` | Regras de negócio e validações    |
+| `View`       | Interface visual e consumo da API |
 
-Responsabilidades
-Camada	Responsabilidade
-Model	Estrutura e manipulação dos dados
-Controller	Regras de negócio e validações
-View	Interface visual e consumo da API
 3. Tecnologias Utilizadas
-Backend
-Node.js
-Express
-API RESTful
-Frontend
-HTML5
-CSS3
-JavaScript Vanilla
-Ferramentas
-MkDocs
-GitHub Actions
-Jest
-Supertest
-4. Persistência In-Memory
+      Backend
+      Node.js
+      Express
+      API RESTful
+      Frontend
+      HTML5
+      CSS3
+      JavaScript Vanilla
+      Ferramentas
+      MkDocs
+      GitHub Actions
+      Jest
+      Supertest
+
+
+## 4. Persistência In-Memory
 
 Os dados serão armazenados temporariamente em memória para simplificar o desenvolvimento e eliminar dependências externas de banco de dados.
 
@@ -73,7 +78,9 @@ Desenvolvimento mais rápido
 Execução simplificada
 Testes mais leves
 Foco na lógica da aplicação
-5. Desenvolvimento Baseado em Especificação
+
+
+##5. Desenvolvimento Baseado em Especificação
 
 O projeto seguirá o conceito de Spec-Driven Development.
 
@@ -83,7 +90,7 @@ speckit.specify
 
 A especificação utilizará o padrão OpenAPI 3.0.3 e atuará como fonte principal de verdade do sistema.
 
-6. Testes Automatizados
+##6. Testes Automatizados
 
 Os testes estarão localizados em:
 
@@ -95,7 +102,9 @@ Listagem de tarefas
 Remoção por ID
 Alteração do status completed
 Configuração de lembretes
-7. Integração Contínua (CI)
+
+
+##7. Integração Contínua (CI)
 
 O projeto utilizará GitHub Actions para integração contínua.
 
@@ -107,7 +116,9 @@ A pipeline deverá validar automaticamente:
 Testes
 Integridade da API
 Qualidade do código
-8. Diretrizes do Frontend
+
+
+##8. Diretrizes do Frontend
 
 A camada de visualização deverá seguir boas práticas de desempenho, acessibilidade e responsividade.
 
@@ -121,23 +132,13 @@ Design responsivo
 Progressive Enhancement
 Carregamento de Scripts
 
-Scripts não críticos deverão utilizar:
 
-<script defer></script>
-
-ou
-
-<script async></script>
-9. Segurança e Observabilidade
+##9. Segurança e Observabilidade
 
 O backend deverá validar e sanitizar todas as entradas antes da persistência em memória.
 
-Health Check
 
-A API deverá possuir a rota:
-
-/health
-10. Documentação
+##10. Documentação
 
 A documentação deverá ser gerada utilizando MkDocs e publicada online.
 
@@ -147,13 +148,17 @@ Guia de execução
 Arquitetura do sistema
 Endpoints da API
 Critérios de aceitação
-11. Critérios de Entrega
+
+
+##11. Critérios de Entrega
 
 O projeto será considerado concluído apenas com:
 
 Repositório público no GitHub contendo histórico de commits e pipeline ativa
 Documentação pública gerada com MkDocs
-12. Resultado Esperado
+
+
+##12. Resultado Esperado
 
 Ao final do desenvolvimento, o projeto deverá possuir:
 
